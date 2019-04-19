@@ -62,7 +62,7 @@ before_install:
 before_script:
   - cd "${TRAVIS_BUILD_DIR}"
   - ls -la
-script: sh ./.travis_build.sh
+script: bash .travis-build.sh
 branches:
   only:
     - master
