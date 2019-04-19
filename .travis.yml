@@ -59,6 +59,9 @@ before_install:
  - sudo cp -a libgtest_main.so libgtest.so /usr/lib/
  - which valgrind
  - cd "${TRAVIS_BUILD_DIR}"
+before_script:
+  - cd "${TRAVIS_BUILD_DIR}"
+  - ls -l
 script: sh ./.travis_build.sh
 branches:
   only:
