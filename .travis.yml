@@ -59,7 +59,7 @@ before_install:
  - sudo cp -a libgtest_main.so libgtest.so /usr/lib/
  - which valgrind
  - cd "${TRAVIS_BUILD_DIR}"
-script: sh ./travis_build.sh
+script: sh ./.travis_build.sh
 branches:
   only:
     - master
