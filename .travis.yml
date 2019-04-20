@@ -109,7 +109,7 @@ matrix:
       - VERSION=c++17
     addons:
       apt:
-        sources: [llvm-toolchain-trusty-6.0]
+        sources: [ubuntu-toolchain-r-test, llvm-toolchain-trusty-6.0]
         packages: [libstdc++6, clang-6.0]
   - os: linux
     compiler: clang
@@ -118,7 +118,7 @@ matrix:
       - VERSION=c++17
     addons:
       apt:
-        sources: [llvm-toolchain-trusty-7]
+        sources: [ubuntu-toolchain-r-test, llvm-toolchain-trusty-7]
         packages: [libstdc++7, clang-7.0]
 before_install:
  - sudo apt-get -qq update
