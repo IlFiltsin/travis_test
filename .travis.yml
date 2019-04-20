@@ -1,4 +1,10 @@
 language: cpp
+
+dist: trusty
+cache:
+  directories:
+  - ${TRAVIS_BUILD_DIR}/deps
+
 matrix:
   include:
   - os: linux
