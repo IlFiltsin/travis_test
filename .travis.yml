@@ -126,7 +126,10 @@ matrix:
       apt:
         sources: [ubuntu-toolchain-r-test, llvm-toolchain-trusty-7]
         packages: [clang-7]
-before_install:
+install:
+ - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+ - mkdir -p "${DEPS_DIR}"
+ - cd "${DEPS_DIR}"
  - sudo apt-get -qq update
  - sudo apt-get install -y libgtest-dev cmake
  - sudo wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
