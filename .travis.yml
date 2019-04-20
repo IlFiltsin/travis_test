@@ -9,7 +9,7 @@ matrix:
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test']
-        packages: [g++-4.8, valgrind]
+        packages: [g++-4.8]
   - os: linux
     dist: trusty
     compiler: gcc
@@ -18,7 +18,7 @@ matrix:
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test']
-        packages: [g++-4.9, valgrind]
+        packages: [g++-4.9]
   - os: linux
     dist: trusty
     compiler: gcc
@@ -27,7 +27,7 @@ matrix:
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test']
-        packages: [g++-5, valgrind]
+        packages: [g++-5]
   - os: linux
     dist: trusty
     compiler: gcc
@@ -36,7 +36,7 @@ matrix:
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test']
-        packages: [g++-6, valgrind]
+        packages: [g++-6]
   - os: linux
     dist: trusty
     compiler: gcc
@@ -45,11 +45,65 @@ matrix:
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test']
-        packages: [g++-7, valgrind]
+        packages: [g++-7]
+  - os: linux
+    dist: trusty
+    compiler: clang
+    env:
+      - COMPILER=clang++-3.6
+    addons:
+      apt:
+        sources: ['ubuntu-toolchain-r-test']
+        packages: [clang++-3.6]
+  - os: linux
+    dist: trusty
+    compiler: clang
+    env:
+      - COMPILER=clang++-3.7
+    addons:
+      apt:
+        sources: ['ubuntu-toolchain-r-test']
+        packages: [clang++-3.7]
+  - os: linux
+    dist: trusty
+    compiler: clang
+    env:
+      - COMPILER=clang++-3.8
+    addons:
+      apt:
+        sources: ['ubuntu-toolchain-r-test']
+        packages: [clang++-3.8]
+  - os: linux
+    dist: trusty
+    compiler: clang
+    env:
+      - COMPILER=clang++-3.9
+    addons:
+      apt:
+        sources: ['ubuntu-toolchain-r-test']
+        packages: [clang++-3.9]
+  - os: linux
+    dist: trusty
+    compiler: clang
+    env:
+      - COMPILER=clang++-4.0
+    addons:
+      apt:
+        sources: ['ubuntu-toolchain-r-test']
+        packages: [clang++-4.0]
+  - os: linux
+    dist: trusty
+    compiler: clang
+    env:
+      - COMPILER=clang++-5.0
+    addons:
+      apt:
+        sources: ['ubuntu-toolchain-r-test']
+        packages: [clang++-5.0]
 
 before_install:
  - sudo apt-get -qq update
- - sudo apt-get install -y libgtest-dev valgrind cmake
+ - sudo apt-get install -y libgtest-dev cmake
  - sudo wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
  - sudo tar xf release-1.7.0.tar.gz
  - cd googletest-release-1.7.0
@@ -68,5 +122,3 @@ branches:
   only:
     - master
     - develop
-rvm:
-- 9.00
