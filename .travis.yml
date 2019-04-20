@@ -2,7 +2,6 @@ language: cpp
 matrix:
   include:
   - os: linux
-    dist: trusty
     compiler: gcc
     env:
       - COMPILER=g++-4.8
@@ -11,7 +10,6 @@ matrix:
         sources: ['ubuntu-toolchain-r-test']
         packages: [g++-4.8]
   - os: linux
-    dist: trusty
     compiler: gcc
     env:
       - COMPILER=g++-4.9
@@ -20,7 +18,6 @@ matrix:
         sources: ['ubuntu-toolchain-r-test']
         packages: [g++-4.9]
   - os: linux
-    dist: trusty
     compiler: gcc
     env:
       - COMPILER=g++-5
@@ -29,7 +26,6 @@ matrix:
         sources: ['ubuntu-toolchain-r-test']
         packages: [g++-5]
   - os: linux
-    dist: trusty
     compiler: gcc
     env:
       - COMPILER=g++-6
@@ -47,7 +43,6 @@ matrix:
         sources: ['ubuntu-toolchain-r-test']
         packages: [g++-7]
   - os: linux
-    dist: trusty
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
@@ -56,7 +51,6 @@ matrix:
         sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.6']
         packages: [clang-3.6]
   - os: linux
-    dist: trusty
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
@@ -65,7 +59,6 @@ matrix:
         sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7']
         packages: [clang-3.7]
   - os: linux
-    dist: trusty
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
@@ -74,7 +67,6 @@ matrix:
         sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.8']
         packages: [clang-3.8]
   - os: linux
-    dist: trusty
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
@@ -83,22 +75,20 @@ matrix:
         sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.9']
         packages: [clang-3.9]
   - os: linux
-    dist: trusty
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
     addons:
       apt:
-        sources: [llvm-toolchain-precise-4.0']
+        sources: ['llvm-toolchain-precise-4.0']
         packages: [clang-4.0]
   - os: linux
-    dist: trusty
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
     addons:
       apt:
-        sources: [llvm-toolchain-precise-5.0']
+        sources: ['llvm-toolchain-precise-5.0']
         packages: [clang-5.0]
 
 before_install:
