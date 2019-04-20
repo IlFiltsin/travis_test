@@ -72,7 +72,7 @@ matrix:
       - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
     addons:
       apt:
-        sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.9']
+        sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-3.9']
         packages: [clang-3.9]
   - os: linux
     compiler: clang
@@ -80,7 +80,7 @@ matrix:
       - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
     addons:
       apt:
-        sources: ['llvm-toolchain-precise-4.0']
+        sources: ['llvm-toolchain-trusty-4.0']
         packages: [clang-4.0]
   - os: linux
     compiler: clang
@@ -88,7 +88,7 @@ matrix:
       - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
     addons:
       apt:
-        sources: ['llvm-toolchain-precise-5.0']
+        sources: ['llvm-toolchain-trusty-5.0']
         packages: [clang-5.0]
 
 before_install:
