@@ -4,15 +4,6 @@ matrix:
   - os: linux
     compiler: gcc
     env:
-      - MATRIX_EVAL="CC=gcc-4.8.1 && CXX=g++-4.8.1"
-      - VERSION=c++11
-    addons:
-      apt:
-        sources: ['ubuntu-toolchain-r-test']
-        packages: [g++-4.8.1]
-  - os: linux
-    compiler: gcc
-    env:
       - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
       - VERSION=c++11
     addons:
@@ -22,7 +13,7 @@ matrix:
   - os: linux
     compiler: gcc
     env:
-      - MATRIX_EVAL="CC=gcc-5.0 && CXX=g++-5.0"
+      - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
       - VERSION=c++14
     addons:
       apt:
@@ -31,7 +22,7 @@ matrix:
   - os: linux
     compiler: gcc
     env:
-      - MATRIX_EVAL="CC=gcc-6.0 && CXX=g++-6.0"
+      - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
       - VERSION=c++14
     addons:
       apt:
@@ -41,7 +32,7 @@ matrix:
     dist: trusty
     compiler: gcc
     env:
-      - MATRIX_EVAL="CC=gcc-7.0 && CXX=g++-7.0"
+      - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
       - VERSION=c++17
     addons:
       apt:
@@ -51,7 +42,7 @@ matrix:
     dist: trusty
     compiler: gcc
     env:
-      - MATRIX_EVAL="CC=gcc-8.0 && CXX=g++-8.0"
+      - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
       - VERSION=c++17
     addons:
       apt:
