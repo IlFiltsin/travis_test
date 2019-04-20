@@ -128,6 +128,7 @@ before_install:
  - cd googletest-release-1.7.0
  - eval "${MATRIX_EVAL}"
  - echo $CXX
+ - echo $VERSION
  - sudo cmake -DBUILD_SHARED_LIBS=ON .
  - sudo make
  - sudo cp -a include/gtest /usr/include
@@ -138,7 +139,6 @@ before_script:
   - ls -la
   - ls -la /usr/lib/
 script: 
-  - echo $VERSION
   - $CXX main.cpp -std=$VERSION -stdlib=libc++ -lgtest -lgtest_main -lpthread -o unit_test -Wall -Wextra -pedantic -pedantic-errors -Werror -Wfatal-errors -Wundef
   - ./unit_test
 branches:
