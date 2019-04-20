@@ -51,20 +51,11 @@ matrix:
   - os: linux
     compiler: clang
     env:
-      - MATRIX_EVAL="CC=clang-3.3 && CXX=clang++-3.3"
-      - VERSION=c++11
-    addons:
-      apt:
-        sources: [ubuntu-toolchain-r-test, llvm-toolchain-trusty-3.3]
-        packages: [libc++-dev, clang-3.3]
-  - os: linux
-    compiler: clang
-    env:
       - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6 && CXXFLAGS=libc++"
       - VERSION=c++14
     addons:
       apt:
-        sources: [ubuntu-toolchain-r-test, llvm-toolchain-trusty-3.6]
+        sources: [ubuntu-toolchain-r-test, llvm-toolchain-precise-3.6]
         packages: [libc++-dev, clang-3.6]
   - os: linux
     compiler: clang
@@ -73,7 +64,7 @@ matrix:
       - VERSION=c++14
     addons:
       apt:
-        sources: [ubuntu-toolchain-r-test, llvm-toolchain-trusty-3.7]
+        sources: [ubuntu-toolchain-r-test, llvm-toolchain-precise-3.7]
         packages: [libc++-dev, clang-3.7]
   - os: linux
     compiler: clang
@@ -82,7 +73,7 @@ matrix:
       - VERSION=c++14
     addons:
       apt:
-        sources: [ubuntu-toolchain-r-test, llvm-toolchain-trusty-3.8]
+        sources: [ubuntu-toolchain-r-test, llvm-toolchain-precise-3.8]
         packages: [clang-3.8]
   - os: linux
     compiler: clang
@@ -91,7 +82,7 @@ matrix:
       - VERSION=c++14
     addons:
       apt:
-        sources: [ubuntu-toolchain-r-test, llvm-toolchain-trusty-3.9]
+        sources: [llvm-toolchain-trusty-3.9]
         packages: [clang-3.9]
   - os: linux
     compiler: clang
