@@ -1,5 +1,5 @@
 echo "Compiling unit tests..."
-g++ main.cpp -lgtest -lgtest_main -std=c++11 -lpthread -o unit_test -Wall -Wextra -pedantic -pedantic-errors -Werror -Wfatal-errors -Wundef -v
+$CXX main.cpp -lgtest -lgtest_main -std=c++11 -lpthread -o unit_test -Wall -Wextra -pedantic -pedantic-errors -Werror -Wfatal-errors -Wundef -v
 echo "Running unit tests..."
 ./unit_test -v
 result=$?
