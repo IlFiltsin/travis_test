@@ -108,7 +108,9 @@ before_script:
   - cd "${TRAVIS_BUILD_DIR}"
   - ls -la
   - ls -la /usr/lib/
-script: bash .travis-build.sh
+script: 
+  - $CXX main.cpp -lgtest -lgtest_main -std=c++11 -lpthread -o unit_test -Wall -Wextra -pedantic -pedantic-errors -Werror -Wfatal-errors -Wundef
+  - ./unit_test
 branches:
   only:
     - master
