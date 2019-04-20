@@ -60,7 +60,7 @@ matrix:
   - os: linux
     compiler: clang
     env:
-      - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+      - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6 && CXXFLAGS=libc++"
       - VERSION=c++14
     addons:
       apt:
@@ -69,7 +69,7 @@ matrix:
   - os: linux
     compiler: clang
     env:
-      - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
+      - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7 && CXXFLAGS=libc++"
       - VERSION=c++14
     addons:
       apt:
