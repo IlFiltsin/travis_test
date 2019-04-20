@@ -73,7 +73,7 @@ matrix:
       - VERSION=c++14
     addons:
       apt:
-        sources: [ubuntu-toolchain-r-test, llvm-toolchain-precise-3.8]
+        sources: [ubuntu-toolchain-r-test, libc++-dev, llvm-toolchain-precise-3.8]
         packages: [clang-3.8]
   - os: linux
     compiler: clang
@@ -82,7 +82,7 @@ matrix:
       - VERSION=c++14
     addons:
       apt:
-        sources: [ubuntu-toolchain-r-test, llvm-toolchain-trusty-3.9]
+        sources: [ubuntu-toolchain-r-test, libc++-dev, llvm-toolchain-trusty-3.9]
         packages: [clang-3.9]
   - os: linux
     compiler: clang
@@ -138,7 +138,7 @@ before_script:
   - ls -la
   - ls -la /usr/lib/
 script: 
-  - $CXX main.cpp -std=$VERSION -lgtest -lgtest_main -lpthread -o unit_test -Wall -Wextra -pedantic -pedantic-errors -Werror -Wfatal-errors -Wundef
+  - $CXX main.cpp -std=$VERSION -stdlib=libc++ -lgtest -lgtest_main -lpthread -o unit_test -Wall -Wextra -pedantic -pedantic-errors -Werror -Wfatal-errors -Wundef
   - ./unit_test
 branches:
   only:
