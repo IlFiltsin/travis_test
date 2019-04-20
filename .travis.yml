@@ -4,15 +4,17 @@ matrix:
   - os: linux
     compiler: gcc
     env:
-      - COMPILER=g++-4.8
+      - MATRIX_EVAL="CC=gcc-4.8.1 && CXX=g++-4.8.1"
+      - VERSION=c++11
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test']
-        packages: [g++-4.8]
+        packages: [g++-4.8.1]
   - os: linux
     compiler: gcc
     env:
-      - COMPILER=g++-4.9
+      - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+      - VERSION=c++11
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test']
@@ -20,7 +22,8 @@ matrix:
   - os: linux
     compiler: gcc
     env:
-      - COMPILER=g++-5
+      - MATRIX_EVAL="CC=gcc-5.0 && CXX=g++-5.0"
+      - VERSION=c++14
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test']
@@ -28,7 +31,8 @@ matrix:
   - os: linux
     compiler: gcc
     env:
-      - COMPILER=g++-6
+      - MATRIX_EVAL="CC=gcc-6.0 && CXX=g++-6.0"
+      - VERSION=c++14
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test']
@@ -37,15 +41,36 @@ matrix:
     dist: trusty
     compiler: gcc
     env:
-      - COMPILER=g++-7
+      - MATRIX_EVAL="CC=gcc-7.0 && CXX=g++-7.0"
+      - VERSION=c++17
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test']
         packages: [g++-7]
   - os: linux
+    dist: trusty
+    compiler: gcc
+    env:
+      - MATRIX_EVAL="CC=gcc-8.0 && CXX=g++-8.0"
+      - VERSION=c++17
+    addons:
+      apt:
+        sources: ['ubuntu-toolchain-r-test']
+        packages: [g++-8]
+  - os: linux
+    compiler: clang
+    env:
+      - MATRIX_EVAL="CC=clang-3.3 && CXX=clang++-3.3"
+      - VERSION=c++11
+    addons:
+      apt:
+        sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.3']
+        packages: [clang-3.3]
+  - os: linux
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+      - VERSION=c++14
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.6']
@@ -54,6 +79,7 @@ matrix:
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
+      - VERSION=c++14
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7']
@@ -62,6 +88,7 @@ matrix:
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
+      - VERSION=c++14
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.8']
@@ -70,6 +97,7 @@ matrix:
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+      - VERSION=c++14
     addons:
       apt:
         sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-3.9']
@@ -78,6 +106,7 @@ matrix:
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+      - VERSION=c++14
     addons:
       apt:
         sources: ['llvm-toolchain-trusty-4.0']
@@ -86,11 +115,29 @@ matrix:
     compiler: clang
     env:
       - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+      - VERSION=c++17
     addons:
       apt:
         sources: ['llvm-toolchain-trusty-5.0']
         packages: [clang-5.0]
-
+  - os: linux
+    compiler: clang
+    env:
+      - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+      - VERSION=c++17
+    addons:
+      apt:
+        sources: ['llvm-toolchain-trusty-6.0']
+        packages: [clang-6.0]
+  - os: linux
+    compiler: clang
+    env:
+      - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
+      - VERSION=c++17
+    addons:
+      apt:
+        sources: ['llvm-toolchain-trusty-7.0']
+        packages: [clang-7.0]
 before_install:
  - sudo apt-get -qq update
  - sudo apt-get install -y libgtest-dev cmake
@@ -109,7 +156,7 @@ before_script:
   - ls -la
   - ls -la /usr/lib/
 script: 
-  - $CXX main.cpp -lgtest -lgtest_main -std=c++11 -lpthread -o unit_test -Wall -Wextra -pedantic -pedantic-errors -Werror -Wfatal-errors -Wundef
+  - $CXX main.cpp -std=$VERSION -lgtest -lgtest_main -lpthread -o unit_test -Wall -Wextra -pedantic -pedantic-errors -Werror -Wfatal-errors -Wundef
   - ./unit_test
 branches:
   only:
