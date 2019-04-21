@@ -110,9 +110,11 @@ install:
   - |
     if [[ ! -d ${CMAKE_DIR} ]]; then
       mkdir ${CMAKE_DIR}
-      dpkg -i cmake --instdir=${CMAKE_DIR}
+      CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v3.14.2/cmake-3.14.2.tar.gz
+      travis retry wget ${CMAKE_URL}
+      tar xz -C {CMAKE_DIR}
     fi
-  - export PATH=${CMAKE_DIR}:${PATH}
+  - export PATH=${CMAKE_DIR}/bin:${PATH}
 
   #######################################
   ####             GTest             ####
