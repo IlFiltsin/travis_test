@@ -22,80 +22,93 @@ matrix:
           packages: [g++-4.9]
     
     - env: COMPILER=g++-5 VERSION=c++14
-      apt:
-        sources: [ubuntu-toolchain-r-test]
-        packages: [g++-5]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test]
+          packages: [g++-5]
     
     - env: COMPILER=g++-6 VERSION=c++14
-      apt:
-        sources: [ubuntu-toolchain-r-test]
-        packages: [g++-6]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test]
+          packages: [g++-6]
 
     - env: COMPILER=g++-7 VERSION=c++17
-      apt:
-        sources: [ubuntu-toolchain-r-test]
-        packages: [g++-7]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test]
+          packages: [g++-7]
 
     - env: COMPILER=g++-8 VERSION=c++17
-      apt:
-        sources: [ubuntu-toolchain-r-test]
-        packages: [g++-8]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test]
+          packages: [g++-8]
   #######################################
   ####             CLang             ####
   ####################################### 
     - env: COMPILER=clang++-3.4 VERSION=c++11
-      apt:
-        sources: [ubuntu-toolchain-r-test, 
-                  llvm-toolchain-precise-3.4]
-        packages: [clang++-3.4]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test, 
+                    llvm-toolchain-precise-3.4]
+          packages: [clang++-3.4]
 
     - env: COMPILER=clang++-3.6 VERSION=c++14
-      apt:
-        sources: [ubuntu-toolchain-r-test, 
-                  llvm-toolchain-precise-3.6]
-        packages: [clang++-3.6]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test, 
+                    llvm-toolchain-precise-3.6]
+          packages: [clang++-3.6]
 
     - env: COMPILER=clang++-3.7 VERSION=c++14
-      apt:
-        sources: [ubuntu-toolchain-r-test, 
-                  llvm-toolchain-precise-3.7]
-        packages: [clang++-3.7]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test, 
+                    llvm-toolchain-precise-3.7]
+          packages: [clang++-3.7]
 
     - env: COMPILER=clang++-3.8 VERSION=c++14
-      apt:
-        sources: [ubuntu-toolchain-r-test, 
-                  llvm-toolchain-precise-3.8]
-        packages: [clang++-3.8, g++-5]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test, 
+                    llvm-toolchain-precise-3.8]
+          packages: [clang++-3.8, g++-5]
 
     - env: COMPILER=clang++-3.9 VERSION=c++14
-      apt:
-        sources: [ubuntu-toolchain-r-test, 
-                  llvm-toolchain-trusty-3.9]
-        packages: [clang++-3.9, g++-5]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test, 
+                    llvm-toolchain-trusty-3.9]
+          packages: [clang++-3.9, g++-5]
 
     - env: COMPILER=clang++-4.0 VERSION=c++14
-      apt:
-        sources: [ubuntu-toolchain-r-test, 
-                  llvm-toolchain-trusty-4.0]
-        packages: [clang++-4.0]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test, 
+                    llvm-toolchain-trusty-4.0]
+          packages: [clang++-4.0]
 
     - env: COMPILER=clang++-5.0 VERSION=c++17
-      apt:
-        sources: [ubuntu-toolchain-r-test, 
-                  llvm-toolchain-trusty-5.0]
-        packages: [clang++-5.0]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test, 
+                    llvm-toolchain-trusty-5.0]
+          packages: [clang++-5.0]
 
     - env: COMPILER=clang++-6.0 VERSION=c++17
-      apt:
-        sources: [ubuntu-toolchain-r-test, 
-                  llvm-toolchain-trusty-6.0]
-        packages: [clang++-6.0]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test, 
+                    llvm-toolchain-trusty-6.0]
+          packages: [clang++-6.0]
 
     - env: COMPILER=clang++-7 VERSION=c++17
-      apt:
-        sources: [ubuntu-toolchain-r-test, 
-                  llvm-toolchain-trusty-7]
-        packages: [clang++-7]
+      addons:
+        apt:
+          sources: [ubuntu-toolchain-r-test, 
+                    llvm-toolchain-trusty-7]
+          packages: [clang++-7]
 
 install:
   - export CXX=${COMPILER}
@@ -129,12 +142,13 @@ install:
       mv googletest-release-1.7.0 ${GTEST_DIR}
       ls -la
       cd ${GTEST_DIR}
-      ls -la
+      ls -la include/
       cmake -DBUILD_SHARED_LIBS=ON
       make
     fi
   - export PATH=${GTEST_DIR}:${PATH}
   - export PATH=${GTEST_DIR}/include:${PATH}
+  - echo ${PATH}
 
 before_script:
   - cd ${TRAVIS_BUILD_DIR}/test
