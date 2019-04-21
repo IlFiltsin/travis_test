@@ -146,6 +146,7 @@ install:
       cmake -DBUILD_SHARED_LIBS=ON
       make
     fi
+  - export LD_LIBRARY_PATH=${GTEST_DIR}
 
 before_script:
   - cd ${TRAVIS_BUILD_DIR}/test
