@@ -114,6 +114,7 @@ install:
       travis_retry wget ${CMAKE_URL}
       tar xz -C {CMAKE_DIR}
     fi
+  - cmake --version
   - export PATH=${CMAKE_DIR}/bin:${PATH}
 
   #######################################
