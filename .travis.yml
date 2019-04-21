@@ -105,7 +105,7 @@ install:
   - cd ${DEPS_DIR}
 
   #######################################
-  ####         Intsall CMake         ####
+  ####             Cmake             ####
   ####################################### 
   - |
     if [[ ! -d ${CMAKE_DIR} ]]; then
@@ -124,7 +124,7 @@ install:
     if [[ ! -d ${GTEST_DIR} ]]; then
       travis_retry wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
       tar xf release-1.7.0.tar.gz
-      cp -r release-1.7.0 ${GTEST_DIR}
+      cp -r googletest-release-1.7.0 ${GTEST_DIR}
       ls -la
       cd ${GTEST_DIR}
       ls -la
