@@ -1,0 +1,137 @@
+language: cpp
+sudo: false
+notifications:
+  email: false
+
+os: linux
+dist: trusty
+
+cache:
+  directories:
+    - ${TRAVIS_BUILD_DIR}/deps
+
+matrix:
+  #######################################
+  ####              GCC              ####
+  ####################################### 
+  include:
+    - env: COMPILER=g++-4.9 VERSION=c++11
+      apt:
+        sources: [ubuntu-toolchain-r-test]
+        packages: [g++-4.9]
+    
+    - env: COMPILER=g++-5 VERSION=c++14
+      apt:
+        sources: [ubuntu-toolchain-r-test]
+        packages: [g++-5]
+    
+    - env: COMPILER=g++-6 VERSION=c++14
+      apt:
+        sources: [ubuntu-toolchain-r-test]
+        packages: [g++-6]
+
+    - env: COMPILER=g++-7 VERSION=c++17
+      apt:
+        sources: [ubuntu-toolchain-r-test]
+        packages: [g++-7]
+
+    - env: COMPILER=g++-8 VERSION=c++17
+      apt:
+        sources: [ubuntu-toolchain-r-test]
+        packages: [g++-8]
+  #######################################
+  ####             CLang             ####
+  ####################################### 
+    - env: COMPILER=clang++-3.4 VERSION=c++11
+      apt:
+        sources: [ubuntu-toolchain-r-test, 
+                  llvm-toolchain-precise-3.4]
+        packages: [clang++-3.4]
+
+    - env: COMPILER=clang++-3.6 VERSION=c++14
+      apt:
+        sources: [ubuntu-toolchain-r-test, 
+                  llvm-toolchain-precise-3.6]
+        packages: [clang++-3.6]
+
+    - env: COMPILER=clang++-3.7 VERSION=c++14
+      apt:
+        sources: [ubuntu-toolchain-r-test, 
+                  llvm-toolchain-precise-3.7]
+        packages: [clang++-3.7]
+
+    - env: COMPILER=clang++-3.8 VERSION=c++14
+      apt:
+        sources: [ubuntu-toolchain-r-test, 
+                  llvm-toolchain-precise-3.8]
+        packages: [clang++-3.8, g++-5]
+
+    - env: COMPILER=clang++-3.9 VERSION=c++14
+      apt:
+        sources: [ubuntu-toolchain-r-test, 
+                  llvm-toolchain-trusty-3.9]
+        packages: [clang++-3.9, g++-5]
+
+    - env: COMPILER=clang++-4.0 VERSION=c++14
+      apt:
+        sources: [ubuntu-toolchain-r-test, 
+                  llvm-toolchain-trusty-4.0]
+        packages: [clang++-4.0]
+
+    - env: COMPILER=clang++-5.0 VERSION=c++17
+      apt:
+        sources: [ubuntu-toolchain-r-test, 
+                  llvm-toolchain-trusty-5.0]
+        packages: [clang++-5.0]
+
+    - env: COMPILER=clang++-6.0 VERSION=c++17
+      apt:
+        sources: [ubuntu-toolchain-r-test, 
+                  llvm-toolchain-trusty-6.0]
+        packages: [clang++-6.0]
+
+    - env: COMPILER=clang++-7 VERSION=c++17
+      apt:
+        sources: [ubuntu-toolchain-r-test, 
+                  llvm-toolchain-trusty-7]
+        packages: [clang++-7]
+
+install:
+  - export CXX=${COMPILER}
+  - DEPS_DIR=${TRAVIS_BUILD_DIR}/deps
+  - CMAKE_DIR=${DEPS_DIR}/cmake
+  - GTEST_DIR=${DEPS_DIR}/gtest
+  - mkdir -p ${DEPS_DIR}
+  - cd ${DEPS_DIR}
+
+  #######################################
+  ####         Intsall CMake         ####
+  ####################################### 
+  - |
+    if [[ ! -d ${CMAKE_DIR} ]]; then
+      mkdir ${CMAKE_DIR}
+      apt-get Dir::Cache::Archives=${CMAKE_DIR} intall cmake
+    fi
+  - export PATH=${CMAKE_DIR}
+
+  #######################################
+  ####             GTest             ####
+  ####################################### 
+  - |
+    if [[ ! -d ${GTEST_DIR} ]]; then
+      mkdir ${GTEST_DIR}
+      wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
+      tar xf release-1.7.0.tar.gz -C ${GTEST_DIR}
+      cd ${GTEST_DIR}
+      cmake -DBUILD_SHARED_LIBS=ON
+      make
+    fi
+  - export PATH=${GTEST_DIR}/include
+
+before_script:
+  - cd ${TRAVIS_BUILD_DIR}
+  - mkdir build
+script:
+  - $CXX *.cpp -std=$VERSION -pthread -lgtest -lgtest_main -o ./build/unit_test -Wall -Wextra -pedantic
+  - ./build/unit_test
+  
