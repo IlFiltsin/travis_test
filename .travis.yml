@@ -146,11 +146,10 @@ install:
       cmake -DBUILD_SHARED_LIBS=ON
       make
     fi
-  - export PATH=${GTEST_DIR}:${PATH}
 
 before_script:
   - cd ${TRAVIS_BUILD_DIR}/test
   - mkdir build
 script:
-  - ${CXX} *.cpp -std=$VERSION -pthread -lgtest -lgtest_main -o ./build/unit_test -Wall -Wextra -pedantic -I ${GTEST_DIR}/include
+  - ${CXX} *.cpp -std=$VERSION -pthread -lgtest -lgtest_main -o ./build/unit_test -Wall -Wextra -pedantic -I ${GTEST_DIR}/include -L ${GTEST_DIR}
   - ./build/unit_test
