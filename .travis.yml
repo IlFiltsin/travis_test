@@ -146,7 +146,7 @@ install:
       cmake -DBUILD_SHARED_LIBS=ON
       make
     fi
-    - export PATH=${GTEST_DIR}:${PATH}
+  - export PATH=${GTEST_DIR}:${PATH}
 
 before_script:
   - cd ${TRAVIS_BUILD_DIR}/test
