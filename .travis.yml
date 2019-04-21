@@ -34,16 +34,22 @@ matrix:
           packages: [g++-6]
 
     - env: COMPILER=g++-7 VERSION=c++17
-      addons:
+      addons: &gcc7
         apt:
           sources: [ubuntu-toolchain-r-test]
           packages: [g++-7]
 
+    - env: COMPILER=g++-7 VERSION=c++14
+      addons: *gcc7
+
     - env: COMPILER=g++-8 VERSION=c++17
-      addons:
+      addons: &gcc8
         apt:
           sources: [ubuntu-toolchain-r-test]
           packages: [g++-8]
+
+    - env: COMPILER=g++-8 VERSION=c++14
+      addons: *gcc8
   #######################################
   ####             CLang             ####
   ####################################### 
@@ -97,18 +103,24 @@ matrix:
           packages: [clang++-5.0]
 
     - env: COMPILER=clang++-6.0 VERSION=c++17
-      addons:
+      addons: &clang60
         apt:
           sources: [ubuntu-toolchain-r-test, 
                     llvm-toolchain-trusty-6.0]
           packages: [clang++-6.0]
 
+    - env: COMPILER=clang++-7 VERSION=c++14
+      addons: *clang60
+
     - env: COMPILER=clang++-7 VERSION=c++17
-      addons:
+      addons: &clang70
         apt:
           sources: [ubuntu-toolchain-r-test, 
                     llvm-toolchain-trusty-7]
           packages: [clang++-7]
+    
+    - env: COMPILER=clang++-7 VERSION=c++14
+      addons: *clang70
 
 install:
   - export CXX=${COMPILER}
@@ -124,10 +136,9 @@ install:
   ####################################### 
   - |
     if [[ ! -d ${CMAKE_DIR} ]]; then
-      mkdir ${CMAKE_DIR}
       CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v3.14.2/cmake-3.14.2.tar.gz
-      travis_retry wget ${CMAKE_URL}
-      tar xf cmake-3.14.2.tar.gz -C ${CMAKE_DIR}
+      mkdir ${CMAKE_DIR}
+      travis_retry wget ${CMAKE_URL} | tar -xz -C ${CMAKE_DIR}
     fi
   - export PATH=${CMAKE_DIR}/bin:${PATH}
   - cmake --version
@@ -137,12 +148,10 @@ install:
   ####################################### 
   - |
     if [[ ! -d ${GTEST_DIR} ]]; then
-      travis_retry wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
-      tar xf release-1.7.0.tar.gz
-      mv googletest-release-1.7.0 ${GTEST_DIR}
-      ls -la
+      GTEST_VERSION=release-1.8.1
+      GTEST_URL=https://github.com/google/googletest/archive/${GTEST_VERSION}.tar.gz
+      travis_retry wget ${GTEST_URL} | tar -xz --transform s/googletest-${GTEST_VERSION}/gtest/
       cd ${GTEST_DIR}
-      ls -la include/
       cmake -DBUILD_SHARED_LIBS=ON
       make
     fi
