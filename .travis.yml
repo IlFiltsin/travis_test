@@ -138,7 +138,7 @@ install:
     if [[ ! -d ${CMAKE_DIR} ]]; then
       CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v3.14.2/cmake-3.14.2.tar.gz
       mkdir ${CMAKE_DIR}
-      travis_retry wget ${CMAKE_URL} | tar -xz -C ${CMAKE_DIR}
+      travis_retry wget --quiet -O - ${CMAKE_URL} | tar -xz -C ${CMAKE_DIR}
     fi
   - export PATH=${CMAKE_DIR}/bin:${PATH}
   - cmake --version
@@ -150,7 +150,7 @@ install:
     if [[ ! -d ${GTEST_DIR} ]]; then
       GTEST_VERSION=release-1.8.1
       GTEST_URL=https://github.com/google/googletest/archive/${GTEST_VERSION}.tar.gz
-      travis_retry wget ${GTEST_URL} | tar -xz --transform s/googletest-${GTEST_VERSION}/gtest/
+      travis_retry wget --quiet -O - ${GTEST_URL} | tar -xz --transform s/googletest-${GTEST_VERSION}/gtest/
       cd ${GTEST_DIR}
       cmake -DBUILD_SHARED_LIBS=ON
       make
