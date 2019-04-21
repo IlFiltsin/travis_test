@@ -97,7 +97,6 @@ matrix:
         packages: [clang++-7]
 
 install:
-  - apt-get -qq update
   - export CXX=${COMPILER}
   - DEPS_DIR=${TRAVIS_BUILD_DIR}/deps
   - CMAKE_DIR=${DEPS_DIR}/cmake
