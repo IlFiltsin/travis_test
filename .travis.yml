@@ -111,7 +111,7 @@ install:
     if [[ ! -d ${CMAKE_DIR} ]]; then
       mkdir ${CMAKE_DIR}
       CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v3.14.2/cmake-3.14.2.tar.gz
-      travis-retry wget ${CMAKE_URL}
+      travis_retry wget ${CMAKE_URL}
       tar xz -C {CMAKE_DIR}
     fi
   - export PATH=${CMAKE_DIR}/bin:${PATH}
@@ -122,7 +122,7 @@ install:
   - |
     if [[ ! -d ${GTEST_DIR} ]]; then
       mkdir ${GTEST_DIR}
-      travis-retry wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
+      travis_retry wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
       tar xf release-1.7.0.tar.gz -C ${GTEST_DIR}
       cd ${GTEST_DIR}
       cmake -DBUILD_SHARED_LIBS=ON
@@ -135,5 +135,5 @@ before_script:
   - cd ${TRAVIS_BUILD_DIR}/test
   - mkdir build
 script:
-  - $CXX *.cpp -std=$VERSION -pthread -lgtest -lgtest_main -o ./build/unit_test -Wall -Wextra -pedantic
+  - ${CXX} *.cpp -std=$VERSION -pthread -lgtest -lgtest_main -o ./build/unit_test -Wall -Wextra -pedantic
   - ./build/unit_test
