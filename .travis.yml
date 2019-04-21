@@ -112,7 +112,7 @@ install:
       mkdir ${CMAKE_DIR}
       CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v3.14.2/cmake-3.14.2.tar.gz
       travis_retry wget ${CMAKE_URL}
-      tar xf cmake-3.14.2.tar.gz -C {CMAKE_DIR}
+      tar xf cmake-3.14.2.tar.gz -C ${CMAKE_DIR}
     fi
   - cmake --version
   - export PATH=${CMAKE_DIR}/bin:${PATH}
