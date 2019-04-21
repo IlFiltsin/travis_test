@@ -111,8 +111,8 @@ install:
     if [[ ! -d ${CMAKE_DIR} ]]; then
       mkdir ${CMAKE_DIR}
       CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v3.14.2/cmake-3.14.2.tar.gz
-      wget ${CMAKE_URL}
-      tar xz -C {CMAKE_DIR}
+      travis_retry wget ${CMAKE_URL}
+      tar xf cmake-3.14.2.tar.gz -C {CMAKE_DIR}
     fi
   - cmake --version
   - export PATH=${CMAKE_DIR}/bin:${PATH}
@@ -123,7 +123,7 @@ install:
   - |
     if [[ ! -d ${GTEST_DIR} ]]; then
       mkdir ${GTEST_DIR}
-      wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
+      travis_retry wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
       tar xf release-1.7.0.tar.gz -C ${GTEST_DIR}
       cd ${GTEST_DIR}
       cmake -DBUILD_SHARED_LIBS=ON
