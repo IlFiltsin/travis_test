@@ -124,7 +124,7 @@ install:
     if [[ ! -d ${GTEST_DIR} ]]; then
       travis_retry wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
       tar xf release-1.7.0.tar.gz
-      mv -r googletest-release-1.7.0 ${GTEST_DIR}
+      mv googletest-release-1.7.0 ${GTEST_DIR}
       ls -la
       cd ${GTEST_DIR}
       ls -la
