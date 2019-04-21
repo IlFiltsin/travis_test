@@ -53,13 +53,6 @@ matrix:
   #######################################
   ####             CLang             ####
   ####################################### 
-    - env: COMPILER=clang++-3.4 VERSION=c++11
-      addons:
-        apt:
-          sources: [ubuntu-toolchain-r-test, 
-                    llvm-toolchain-precise-3.4]
-          packages: [clang++-3.4]
-
     - env: COMPILER=clang++-3.6 VERSION=c++14
       addons:
         apt:
@@ -109,7 +102,7 @@ matrix:
                     llvm-toolchain-trusty-6.0]
           packages: [clang++-6.0]
 
-    - env: COMPILER=clang++-7 VERSION=c++14
+    - env: COMPILER=clang++-6.0 VERSION=c++14
       addons: *clang60
 
     - env: COMPILER=clang++-7 VERSION=c++17
