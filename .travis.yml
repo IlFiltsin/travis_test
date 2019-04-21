@@ -114,8 +114,8 @@ install:
       travis_retry wget ${CMAKE_URL}
       tar xf cmake-3.14.2.tar.gz -C ${CMAKE_DIR}
     fi
-  - cmake --version
   - export PATH=${CMAKE_DIR}/bin:${PATH}
+  - cmake --version
 
   #######################################
   ####             GTest             ####
@@ -125,7 +125,9 @@ install:
       mkdir ${GTEST_DIR}
       travis_retry wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
       tar xf release-1.7.0.tar.gz -C ${GTEST_DIR}
+      ls -la
       cd ${GTEST_DIR}
+      ls -la
       cmake -DBUILD_SHARED_LIBS=ON
       make
     fi
